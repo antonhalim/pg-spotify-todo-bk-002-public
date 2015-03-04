@@ -13,39 +13,15 @@ class DataLoader
   end
 
   def extract_tracks
-    self.data["tracks"]
-  end
-
-  def extract_values(track)
-    url = track["track_url"]
-    track_name = track["track_name"]
-    artist = track["artist_name"]
-    num_streams = track["num_streams"]
-    album = track["album_name"]
-    [url, track_name, artist, num_streams, album]
-  end
-
-  def make_value_string(track)
-    values = extract_values(track)
-    value_string = values.map{|v| "'#{v}'"}.join(",")
-  end
-
-  def execute_sql(sql_string)
-    @db.exec(sql_string)
+    # code first
   end
   
-  def add_song_to_db(track)
-    insert_sql = <<-SQL
-      INSERT INTO #{table_name} 
-      (url, track_name, artist, num_streams, album) 
-      VALUES
-      (#{make_value_string(track)})
-    SQL
-    execute_sql(insert_sql)
+  def add_song_to_db
+    # code second
   end
   
   def add_songs_to_db
-    self.extract_tracks.each { |t| add_song_to_db(t) }
+    # code third
   end
 
 end

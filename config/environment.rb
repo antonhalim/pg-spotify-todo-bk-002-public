@@ -2,7 +2,6 @@ require 'bundler/setup'
 require 'base64'
 require 'json'
 require 'open-uri'
-require 'pry'
 
 Bundler.require
 

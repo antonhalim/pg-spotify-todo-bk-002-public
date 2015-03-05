@@ -13,15 +13,22 @@ class DataLoader
   end
 
   def extract_tracks
-    # code first
+    data["tracks"]
   end
-  
-  def add_song_to_db
-    # code second
+
+  def add_song_to_db(song_hash)
+    sql = <<-SQL
+    INSERT INTO songs(track_name, artist, album, url, num_streams)VALUES
+    ($1, $2, $3, $4, $5)
+    SQL
+    parameter = [song_hash["track_name"], song_hash["artist_name"], song_hash["album_name"], song_hash["track_url"], song_hash["num_streams"]]
+    @db.exec_params(sql, parameter)
   end
-  
+
   def add_songs_to_db
-    # code third
+    extract_tracks.each do |song|
+      add_song_to_db(song)
+    end
   end
 
 end

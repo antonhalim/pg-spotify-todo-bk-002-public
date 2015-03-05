@@ -5,8 +5,8 @@ class SQLRunner
     @db = db
   end
 
-  def execute_sql(sql)
-    @db.exec(sql)
+  def execute_sql(sql, args=[])
+    @db.exec(sql, args=[])
   end
 
   def create_table
